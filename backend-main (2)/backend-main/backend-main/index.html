@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Code Translation System | NAMASTE ↔ ICD-11 FHIR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <i class="fas fa-hospital"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Medical Code Translation</h1>
+                    <p class="subtitle">NAMASTE ↔ ICD-11 FHIR System</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div id="authStatusNav" class="auth-status-nav">
+                    <div class="status-indicator offline"></div>
+                    <span>Not Authenticated</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- System Status Banner -->
+            <div class="status-banner">
+                <div class="status-item">
+                    <i class="fas fa-circle status-online"></i>
+                    <span>System Online</span>
+                </div>
+                <div class="status-item">
+                    <i class="fas fa-database"></i>
+                    <span>FHIR Compliant</span>
+                </div>
+                <div class="status-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure Connection</span>
+                </div>
+            </div>
+
+            <!-- Authentication Section -->
+            <section class="auth-section card">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div>
+                        <h2>ABHA Authentication</h2>
+                        <p>Secure access to medical code translation services</p>
+                    </div>
+                </div>
+
+                <div id="authStatus" class="auth-status-message">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <div>
+                            <strong>Authentication Required</strong>
+                            <p>Please login to access all features and save translation history</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="loginForm" class="auth-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="abhaId">
+                                <i class="fas fa-id-card"></i>
+                                ABHA ID
+                            </label>
+                            <input type="text" id="abhaId" placeholder="Enter ABHA ID (e.g., ABHA001)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">
+                                <i class="fas fa-phone"></i>
+                                Phone Number
+                            </label>
+                            <input type="tel" id="phone" placeholder="Enter phone number (e.g., 9876543210)" required>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Authenticate
+                        </button>
+                        <button type="button" id="logoutBtn" class="btn btn-secondary" style="display: none;">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </button>
+                    </div>
+                </form>
+
+                <div id="profileSection" class="profile-section" style="display: none;">
+                    <div class="divider"></div>
+                    <h3>User Profile</h3>
+                    <div id="profileData" class="profile-grid"></div>
+                </div>
+            </section>
+
+            <!-- Search Sections -->
+            <div class="search-grid">
+                <!-- NAMASTE Search -->
+                <section class="card search-card">
+                    <div class="section-header">
+                        <div class="section-icon blue">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div>
+                            <h2>NAMASTE Search</h2>
+                            <p>Search medical codes in NAMASTE system</p>
+                        </div>
+                    </div>
+
+                    <div class="search-form">
+                        <div class="form-group">
+                            <label for="namasteSearch">Search Query</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-search input-icon"></i>
+                                <input type="text" id="namasteSearch" 
+                                    placeholder="Enter code or description (e.g., NAM001 or Fever)"
+                                    autocomplete="off">
+                            </div>
+                        </div>
+                        <button type="button" onclick="searchNamaste()" class="btn btn-primary btn-block">
+                            <i class="fas fa-search"></i>
+                            Search NAMASTE
+                        </button>
+                    </div>
+
+                    <div id="namasteResults" class="results-container"></div>
+                </section>
+
+                <!-- ICD-11 Search -->
+                <section class="card search-card">
+                    <div class="section-header">
+                        <div class="section-icon green">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <div>
+                            <h2>ICD-11 Search</h2>
+                            <p>Search medical codes in ICD-11 system</p>
+                        </div>
+                    </div>
+
+                    <div class="search-form">
+                        <div class="form-group">
+                            <label for="icdSearch">Search Query</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-search input-icon"></i>
+                                <input type="text" id="icdSearch" 
+                                    placeholder="Enter code or description (e.g., MG30.00 or Fever)"
+                                    autocomplete="off">
+                            </div>
+                        </div>
+                        <button type="button" onclick="searchICD()" class="btn btn-primary btn-block">
+                            <i class="fas fa-search"></i>
+                            Search ICD-11
+                        </button>
+                    </div>
+
+                    <div id="icdResults" class="results-container"></div>
+                </section>
+            </div>
+
+            <!-- Translation Section -->
+            <section class="card translation-card">
+                <div class="section-header">
+                    <div class="section-icon purple">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div>
+                        <h2>Code Translation</h2>
+                        <p>Translate between NAMASTE, ICD-11, SNOMED CT, and LOINC</p>
+                    </div>
+                </div>
+
+                <div class="translation-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="sourceSystem">Source System</label>
+                            <select id="sourceSystem" class="form-select">
+                                <option value="NAM">NAMASTE</option>
+                                <option value="TM2">ICD-11 TM2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sourceCode">Source Code</label>
+                            <input type="text" id="sourceCode" placeholder="Enter code (e.g., NAM001 or MG30.00)" autocomplete="off">
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="saveHistory" class="form-checkbox">
+                                <span>Save to history</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="button" onclick="translateCode()" class="btn btn-primary btn-block">
+                        <i class="fas fa-exchange-alt"></i>
+                        Translate Code
+                    </button>
+                </div>
+
+                <div id="translationResults" class="results-container"></div>
+            </section>
+
+            <!-- History Section -->
+            <section class="card history-card">
+                <div class="section-header">
+                    <div class="section-header-left">
+                        <div class="section-icon orange">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div>
+                            <h2>Translation History</h2>
+                            <p>View your previous translations (authentication required)</p>
+                        </div>
+                    </div>
+                    <button type="button" onclick="loadHistory()" class="btn btn-secondary">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh
+                    </button>
+                </div>
+
+                <div id="historyResults" class="results-container"></div>
+            </section>
+
+            <!-- API Response Section -->
+            <section class="card api-card">
+                <div class="section-header">
+                    <div class="section-icon gray">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div>
+                        <h2>API Response</h2>
+                        <p>Real-time API response data</p>
+                    </div>
+                </div>
+
+                <div id="apiResponse" class="api-response">
+                    <div class="empty-state">
+                        <i class="fas fa-code"></i>
+                        <p>API responses will appear here...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <div class="loading-text">
+                <h3>Processing...</h3>
+                <p id="loadingMessage">Please wait</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

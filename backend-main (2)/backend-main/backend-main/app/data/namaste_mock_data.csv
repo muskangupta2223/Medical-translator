@@ -1,0 +1,16 @@
+code,display,definition
+NAM001,Fever,Elevated body temperature
+NAM002,Headache,Pain in head or neck region
+NAM003,Cough,Forceful expulsion of air from lungs
+NAM004,Fatigue,Extreme tiredness or exhaustion
+NAM005,Nausea,Feeling of sickness in stomach
+NAM006,Diarrhea,Frequent loose bowel movements
+NAM007,Constipation,Difficulty passing stools
+NAM008,Insomnia,Difficulty falling or staying asleep
+NAM009,Anxiety,Excessive worry and unease
+NAM010,Depression,Persistent sadness and low mood
+NAM011,Back Pain,Pain felt in the back region
+NAM012,Joint Pain,Pain in joints of the body
+NAM013,Skin Rash,"Red, inflamed patches on skin"
+NAM014,Asthma,Chronic inflammatory lung disease
+NAM015,Hypertension,High blood pressure

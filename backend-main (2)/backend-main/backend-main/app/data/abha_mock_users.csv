@@ -1,0 +1,7 @@
+abha_id,name,email,phone,dob,gender,address,created_at
+ABHA001,Rajesh Kumar,rajesh.kumar@email.com,9876543210,1990-05-15,M,"123 Main St, Delhi",2024-01-15
+ABHA002,Priya Sharma,priya.sharma@email.com,9876543211,1985-08-22,F,"456 Park Ave, Mumbai",2024-01-16
+ABHA003,Amit Singh,amit.singh@email.com,9876543212,1992-12-10,M,"789 Lake View, Bangalore",2024-01-17
+ABHA004,Sunita Patel,sunita.patel@email.com,9876543213,1988-03-05,F,"321 Hill Road, Pune",2024-01-18
+ABHA005,Vikram Gupta,vikram.gupta@email.com,9876543214,1995-07-20,M,"654 Garden St, Chennai",2024-01-19
+ABHA006,Meera Joshi,meera.joshi@email.com,9876543215,1987-11-12,F,"987 River Side, Kolkata",2024-01-20

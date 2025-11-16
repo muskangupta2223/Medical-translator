@@ -1,0 +1,16 @@
+system,code,display,definition
+ICD11_TM2,MG30.00,"Fever, unspecified",Fever without specified cause
+ICD11_TM2,8A80,Headache,Primary headache disorders
+ICD11_BIO,MD12,Cough,Symptoms involving respiratory system
+ICD11_BIO,MG22,Fatigue,Malaise and fatigue
+ICD11_BIO,MD90,Nausea and vomiting,Gastrointestinal symptoms
+ICD11_BIO,DA20,Diarrhea,Symptoms involving digestive system
+ICD11_BIO,DA21,Constipation,Functional bowel disorders
+ICD11_BIO,MB20,Insomnia disorder,Difficulty initiating or maintaining sleep
+ICD11_BIO,MB21,Anxiety disorder,Excessive worry and nervousness
+ICD11_BIO,MB22,Depressive episode,Persistent sadness or lack of interest
+ICD11_BIO,ME82,Back pain,Low back pain and related disorders
+ICD11_BIO,ME83,Arthralgia,Joint pain symptom
+ICD11_BIO,EA80,Dermatitis,Inflammation of the skin
+ICD11_BIO,CA23,Asthma,"Asthma, unspecified"
+ICD11_BIO,BA00,Hypertension,Essential (primary) hypertension
